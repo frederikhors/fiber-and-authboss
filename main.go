@@ -15,7 +15,7 @@ func main() {
 
 	app := fiber.New()
 
-	app.Use(adaptor.HTTPMiddleware(ab.LoadClientStateMiddleware), remember.Middleware(ab))
+	app.Use(adaptor.HTTPMiddleware(ab.LoadClientStateMiddleware), adaptor.HTTPMiddleware(remember.Middleware(ab)))
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, World 👋!")
